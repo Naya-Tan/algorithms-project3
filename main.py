@@ -1,0 +1,1 @@
+import networkx as nximport matplotlib.pyplot as plt#1#2edges = [(1, 3), (3, 2), (2, 1), (4, 2), (4, 1),         (3, 5), (5, 6), (5, 8), (6, 8), (6, 7),         (6, 10), (8, 10), (10, 9), (10, 11), (8, 9),         (9, 11), (11, 12), (4, 12)]G = nx.DiGraph()G.add_edges_from(edges)nx.draw_kamada_kawai(G, with_labels = True)plt.show()#3
