@@ -5,15 +5,19 @@ import matplotlib.pyplot as plt
 print("Problem 1")
 
 G1 = nx.Graph()
-
-edges = [
-    ('A', 'B'), ('A', 'E'), ('B', 'C'), ('B', 'F'), ('C', 'D'), ('C', 'G'),
-    ('D', 'H'), ('E', 'F'), ('E', 'I'), ('F', 'G'), ('F', 'J'), ('G', 'H'),
-    ('G', 'K'), ('H', 'L'), ('I', 'J'), ('I', 'M'), ('J', 'N'), ('K', 'L'),
-    ('K', 'O'), ('L', 'P'), ('M', 'N'), ('N', 'O')
+main_edges = [
+    ('A', 'B'), ('A', 'E'), ('B', 'C'), ('B', 'F'), ('C', 'D'), ('C', 'G'), 
+    ('D', 'H'), ('E', 'F'), ('E', 'I'), ('F', 'G'), ('F', 'J'), ('G', 'H'), 
+    ('I', 'J'), ('I', 'M'), ('J', 'N'), ('M', 'N')
 ]
 
-G1.add_edges_from(edges)
+unconnected_edges = [
+    ('K', 'L'), ('L', 'O'), ('O', 'P')
+]
+
+# Add all edges to the graph
+G1.add_edges_from(main_edges)
+G1.add_edges_from(unconnected_edges)
 
 # part a 
 def find_all_connected_components(graph):
@@ -95,7 +99,6 @@ nx.draw_kamada_kawai(G, with_labels = True)
 plt.show()
 
 
-
-
 #3
 print("\nProblem 3")
+
