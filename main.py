@@ -1,5 +1,5 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 # 1
 G1 = nx.Graph()
@@ -19,45 +19,52 @@ def find_all_connected_components(graph):
     return list(nx.connected_components(graph))
 
 connected_components = find_all_connected_components(G1)
-print('Part A\n')
+print('\nPart A')
 print('Connected Components:', connected_components)
 
 # part b 
 def check_path(graph, start, end):
-    # Check path using BFS
-    bfs_path_exists = nx.has_path(graph, start, end, method='bfs')
-    # Check path using DFS
-    dfs_path_exists = nx.has_path(graph, start, end, method='dfs')
+    # Check path using BFS (implicitly used by has_path)
+    bfs_path_exists = nx.has_path(graph, start, end)
+    # Check path using DFS manually
+    dfs_path_exists = False
+    for path in nx.dfs_edges(graph, start):
+        if end in path:
+            dfs_path_exists = True
+            break
     
     return bfs_path_exists, dfs_path_exists
 
 # Example check between 'A' and 'M'
 bfs_path, dfs_path = check_path(G1, 'A', 'M')
-print('Part B\n')
+print('\nPart B')
 print(f"Path exists between 'A' and 'M': BFS: {bfs_path}, DFS: {dfs_path}")
 
 
 #part c 
 def compare_paths(graph, start, end):
     # Find path using BFS
-    bfs_path = nx.shortest_path(graph, start, end, method='bfs')
-    # Find path using DFS
-    dfs_path = nx.shortest_path(graph, start, end, method='dfs')
+    bfs_path = nx.shortest_path(graph, start, end)
+    # Find path using DFS, there is no guaranteed "shortest" path for DFS
+    dfs_paths = list(nx.all_simple_paths(graph, start, end))
+    # Choose the first DFS path, note that this is not necessarily the shortest path
+    dfs_path = dfs_paths[0] if dfs_paths else None
     
     return bfs_path, dfs_path
 
 # Example path comparison between 'A' and 'M'
 bfs_path, dfs_path = compare_paths(G1, 'A', 'M')
-print('Part \n')
+print('\nPart C')
 print(f"BFS path between 'A' and 'M': {bfs_path}")
-print(f"DFS path between 'A' and 'M': {dfs_path}")
+print(f"DFS path (one of the possible paths) between 'A' and 'M': {dfs_path}")
+print('\n')
 
 
 
 
 
 #2
-edges = [(1, 3), (3, 2), (4, 1), (2, 1), (4, 2), 
+'''edges = [(1, 3), (3, 2), (4, 1), (2, 1), (4, 2), 
          (3, 5), (5, 6), (5, 8), (6, 8), (6, 7),
          (6, 10), (8, 10), (10, 9), (10, 11), (8, 9),
          (9, 5), (7, 10), (9, 11), (11, 12), (4, 12)]
@@ -85,7 +92,7 @@ print("Topological Order:")
 print(topological)
 nx.draw_kamada_kawai(G, with_labels = True)
 plt.show()
-
+'''
 
 
 
