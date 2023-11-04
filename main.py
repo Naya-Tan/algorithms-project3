@@ -1,7 +1,9 @@
 import networkx as nx
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 # 1
+print("Problem 1")
+
 G1 = nx.Graph()
 
 edges = [
@@ -64,12 +66,11 @@ print('\n')
 
 
 #2
-'''edges = [(1, 3), (3, 2), (4, 1), (2, 1), (4, 2), 
+print("Problem 2 \n")
+edges = [(1, 3), (3, 2), (4, 1), (2, 1), (4, 2), 
          (3, 5), (5, 6), (5, 8), (6, 8), (6, 7),
          (6, 10), (8, 10), (10, 9), (10, 11), (8, 9),
          (9, 5), (7, 10), (9, 11), (11, 12), (4, 12)]
-
-print(len(edges))
 
 G = nx.DiGraph()
 G.add_edges_from(edges)
@@ -92,8 +93,9 @@ print("Topological Order:")
 print(topological)
 nx.draw_kamada_kawai(G, with_labels = True)
 plt.show()
-'''
+
 
 
 
 #3
+print("\nProblem 3")
