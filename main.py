@@ -15,13 +15,12 @@ unconnected_edges = [
     ('K', 'L'), ('L', 'O'), ('O', 'P')
 ]
 
-# Add all edges to the graph
+# add all edges to the graph
 G1.add_edges_from(main_edges)
 G1.add_edges_from(unconnected_edges)
 
 # part a 
 def find_all_connected_components(graph):
-    # This will return a list of sets, each set is a connected component
     return list(nx.connected_components(graph))
 
 connected_components = find_all_connected_components(G1)
@@ -30,9 +29,8 @@ print('Connected Components:', connected_components)
 
 # part b 
 def check_path(graph, start, end):
-    # Check path using BFS (implicitly used by has_path)
     bfs_path_exists = nx.has_path(graph, start, end)
-    # Check path using DFS manually
+    # check path using DFS manually
     dfs_path_exists = False
     for path in nx.dfs_edges(graph, start):
         if end in path:
@@ -41,7 +39,7 @@ def check_path(graph, start, end):
     
     return bfs_path_exists, dfs_path_exists
 
-# Example check between 'A' and 'M'
+# example check between 'A' and 'M'
 bfs_path, dfs_path = check_path(G1, 'A', 'M')
 print('\nPart B')
 print(f"Path exists between 'A' and 'M': BFS: {bfs_path}, DFS: {dfs_path}")
@@ -49,16 +47,16 @@ print(f"Path exists between 'A' and 'M': BFS: {bfs_path}, DFS: {dfs_path}")
 
 #part c 
 def compare_paths(graph, start, end):
-    # Find path using BFS
+    # find path using BFS
     bfs_path = nx.shortest_path(graph, start, end)
-    # Find path using DFS, there is no guaranteed "shortest" path for DFS
+    # find path using DFS
     dfs_paths = list(nx.all_simple_paths(graph, start, end))
-    # Choose the first DFS path, note that this is not necessarily the shortest path
+    # grab the first path 
     dfs_path = dfs_paths[0] if dfs_paths else None
     
     return bfs_path, dfs_path
 
-# Example path comparison between 'A' and 'M'
+# compare the paths 
 bfs_path, dfs_path = compare_paths(G1, 'A', 'M')
 print('\nPart C')
 print(f"BFS path between 'A' and 'M': {bfs_path}")
