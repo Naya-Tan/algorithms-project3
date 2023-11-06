@@ -77,22 +77,29 @@ edges = [(1, 3), (3, 2), (4, 1), (2, 1), (4, 2),
 G = nx.DiGraph()
 G.add_edges_from(edges)
 
+#Part A
+#Find strongly connected components of the digraph
 scc = list(nx.strongly_connected_components(G))
 
-print("Strongly Connected Components:")
+print("Part A \nStrongly Connected Components:")
 for i in scc:
     print(i)
 
+#Part B
+#Draw the meta graph
 meta_graph = nx.condensation(G)
 pos = nx.spring_layout(meta_graph)
 nx.draw(meta_graph, pos, with_labels = True, node_size = 1000, node_color = 'skyblue')
 plt.title("Meta Graph of Strongly Connected Components")
 plt.show()
 
-topological = list(nx.topological_sort(meta_graph))
+#Part C
+#Linearize it in topological order
+#topological = list(nx.topological_sort(meta_graph))
 
 print("Topological Order:")
-print(topological)
+#print(topological)
+print(list(reversed(list(nx.topological_sort(meta_graph)))))
 nx.draw_kamada_kawai(G, with_labels = True)
 plt.show()
 
