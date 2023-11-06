@@ -95,11 +95,10 @@ plt.show()
 
 #Part C
 #Linearize it in topological order
-#topological = list(nx.topological_sort(meta_graph))
+topological = list(nx.topological_sort(meta_graph))
 
 print("Topological Order:")
-#print(topological)
-print(list(reversed(list(nx.topological_sort(meta_graph)))))
+print(topological)
 nx.draw_kamada_kawai(G, with_labels = True)
 plt.show()
 
